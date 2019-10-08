@@ -13,20 +13,27 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>测试 | Kirbey&#39;s blog</title>
+  <title>box model | Kirbey&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="CSS">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="https://kirbey.github.io/hexoBlog/测试/index.html">
+  
+  <meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Box Model">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/08/Box Model/index.html">
 <meta property="og:site_name" content="Kirbey&#39;s blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T17:31:33.194Z">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-ca0eba018ab971ed079775ba1aaa0508_hd.jpg">
+<meta property="og:image" content="https://kirbey.github.io/hexoBlog/.io//2.jpg">
+<meta property="og:image" content="https://kirbey.github.io/hexoBlog/.io//3.jpg">
+<meta property="og:updated_time" content="2019-10-08T14:27:19.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试">
+<meta name="twitter:title" content="Box Model">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-ca0eba018ab971ed079775ba1aaa0508_hd.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
   
@@ -80,7 +87,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -152,7 +159,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Box Model" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -160,7 +167,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      测试
+      Box Model
     </h1>
   
 
@@ -168,8 +175,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/hexoBlog/测试/index.html" class="article-date">
-	  <time datetime="2019-10-07T17:31:33.000Z" itemprop="datePublished">十月 8, 2019</time>
+	Posted on <a href="/hexoBlog/2019/10/08/Box Model/" class="article-date">
+	  <time datetime="2019-10-08T12:54:31.000Z" itemprop="datePublished">十月 8, 2019</time>
 	</a>
 
       
@@ -180,12 +187,34 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <a class="fancybox" href="https://pic1.zhimg.com/80/v2-ca0eba018ab971ed079775ba1aaa0508_hd.jpg" title="图一" target="_blank" rel="noopener"><img src="https://pic1.zhimg.com/80/v2-ca0eba018ab971ed079775ba1aaa0508_hd.jpg" alt="图一">
+<a class="fancybox" href="2.jpg" title="图二"><img src="/hexoBlog/.io//2.jpg" alt="图二">
+<a class="fancybox" href="3.jpg" title="图三"><img src="/hexoBlog/.io//3.jpg" alt="图三">
+<a id="more"></a>
+<p>首先理解什么是盒模型：</p>
+<p>网页可以看成是由许多个盒子通过不同的堆积方式组成的一个仓库，网页上的每个HTML元素都被浏览器看成是一个个矩形的盒子，这个盒子由元素的内容，填充，边框，边界组成。默认边框背景色透明，默认看不到盒子：（图一）</p>
+<p>Margin(外边距) - 清除边框外的区域，外边距是透明的。<br>Border(边框) - 围绕在内边距和内容外的边框。<br>Padding(内边距) - 清除内容周围的区域，内边距是透明的。<br>Content(内容) - 盒子的内容，显示文本和图像。<br>那么两种盒子模型分别是什么呢：</p>
+<p>一、W3C的标准盒子模型：（图二）</p>
+<p>在标准盒子模型中，width指的是content的宽度</p>
+<p>二、IE盒子模型：（图三）</p>
+<p>在IE盒子模型中width指的是content+padding+border这三个部分的宽度。</p>
+<p>由于W3C盒模型适用于所有的浏览器，因此我们都默认使用W3C的盒模型，我们常见的<!DOCTYPE html>就是确保了页面是按照W3C的盒模型渲染的。</p>
+<p>使用box-sizing切换盒模型：</p>
+<p>box-sizing: content-box 这个是W3C盒子模型</p>
+<p>box-sizing: border-box 这个是IE盒子模型</p>
+<p>默认box-sizing的属性是content-box</p>
+</a></a></a>
       
     </div>
     <footer class="entry-meta entry-footer">
       
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
       
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a></li></ul>
+
       
             
       
@@ -217,193 +246,39 @@ var themeMenus = {};
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/hexoBlog/2019/10/08/封装一个函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          封装一个函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/hexoBlog/2019/10/08/闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">什么是&#39;闭包&#39;</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
     
+      <ol class="nav">无</ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" 搜索…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="搜索">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/hexoBlog/',
-        CONTENT_URL: '/hexoBlog/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/hexoBlog/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系方式</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/kirbey" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:605464527@qq.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/Box Model/">Box Model</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/闭包/">什么是&#39;闭包&#39;</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/我的第一篇博客/">我的第一篇博客</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">3</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/hexoBlog/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/hexoBlog/tags/javaScript/" style="font-size: 20px;">javaScript</a> <a href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/" style="font-size: 10px;">这篇博客用来测试HEXO是否搭建并上传成功</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">4</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">

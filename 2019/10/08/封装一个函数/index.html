@@ -13,20 +13,33 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>测试 | Kirbey&#39;s blog</title>
+  <title>封装一个函数 | Kirbey&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="javaScript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="https://kirbey.github.io/hexoBlog/测试/index.html">
+  
+  <meta name="description" content="为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。 首先我们写一个简单的HTML         接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装一个函数">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/08/封装一个函数/index.html">
 <meta property="og:site_name" content="Kirbey&#39;s blog">
+<meta property="og:description" content="为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。 首先我们写一个简单的HTML         接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T17:31:33.194Z">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-eafec1aad367a3fe00830a470abe803c_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-32c50a5882cd01fdeb2dcfbb781d1cf7_hd.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-174f15121a983b44b7a5908af40e2873_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4e474786b51dfb8ad389a7810d2add0a_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3bc08b8e4a1e7d9d8628f97e62bf8d3d_hd.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-5eff73a28ba5fd908de17a5abeab3829_hd.jpg">
+<meta property="og:updated_time" content="2019-10-08T14:39:30.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试">
+<meta name="twitter:title" content="封装一个函数">
+<meta name="twitter:description" content="为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。 首先我们写一个简单的HTML         接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-eafec1aad367a3fe00830a470abe803c_hd.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
   
@@ -80,7 +93,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -152,7 +165,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-封装一个函数" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -160,7 +173,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      测试
+      封装一个函数
     </h1>
   
 
@@ -168,8 +181,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/hexoBlog/测试/index.html" class="article-date">
-	  <time datetime="2019-10-07T17:31:33.000Z" itemprop="datePublished">十月 8, 2019</time>
+	Posted on <a href="/hexoBlog/2019/10/08/封装一个函数/" class="article-date">
+	  <time datetime="2019-10-08T14:29:43.000Z" itemprop="datePublished">十月 8, 2019</time>
 	</a>
 
       
@@ -180,12 +193,44 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。</p>
+<p>首先我们写一个简单的HTML</p>
+<img src="https://pic1.zhimg.com/80/v2-eafec1aad367a3fe00830a470abe803c_hd.jpg" class="一个简单的HTML" title="[width] [height] title text " alt="HTML">
+
+<img src="https://pic4.zhimg.com/80/v2-32c50a5882cd01fdeb2dcfbb781d1cf7_hd.png" class="选中HTML文档中的所有div元素" title="[width] [height] title text " alt="选中HTML文档中的所有div元素">
+
+<img src="https://pic4.zhimg.com/80/v2-174f15121a983b44b7a5908af40e2873_hd.jpg" class="在控制台看一下获取的结果" title="[width] [height] title text " alt="在控制台看一下获取的结果">
+
+
+
+<p>接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class</p>
+<a id="more"></a>
+<img src="https://pic3.zhimg.com/80/v2-4e474786b51dfb8ad389a7810d2add0a_hd.jpg" class="给HTML标签中的div元素添加一个class" title="[width] [height] title text " alt="给HTML标签中的div元素添加一个class">
+
+<p>注意在使用forEach() API的时候 对象必须是一个数组或伪数组。因此在给这个函数传递参数的时候需要加上[].</p>
+<img src="https://pic2.zhimg.com/80/v2-3bc08b8e4a1e7d9d8628f97e62bf8d3d_hd.png" class="使用forEach" title="[width] [height] title text " alt="使用forEach() API">
+
+<p>用来添加text Content。</p>
+<img src="https://pic2.zhimg.com/80/v2-5eff73a28ba5fd908de17a5abeab3829_hd.jpg" class="添加textContent" title="[width] [height] title text " alt="添加text Content">
+
+<p>用来判断参数的属性<br>接着封装这个函数</p>
+<p>然后我们就可以尝试去调用它了</p>
+<p>这里给几个简单的CSS属性</p>
+<p>接着调用<br>效果如下</p>
+<p>至此我们自己完成了封装一个API并能够调用它</p>
+<p>完整代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery =function(node)&#123;</span><br><span class="line">  let nodes = &#123;&#125;</span><br><span class="line">  if (typeof node === &apos;string&apos;)&#123;</span><br><span class="line">    let allSiblings = document.querySelectorAll(node)</span><br><span class="line">      for (let i=0; i&lt;allSiblings.length; i++)&#123;</span><br><span class="line">      nodes[i] = allSiblings[i]</span><br><span class="line">      &#125;</span><br><span class="line">      nodes.length = allSiblings.length</span><br><span class="line">  &#125;else if (node instanceof Node)&#123;</span><br><span class="line">   nodes = &#123;</span><br><span class="line">     0: node,</span><br><span class="line">     length: 1</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.addClass = function(classes)&#123;</span><br><span class="line">    classes.forEach((value) =&gt; &#123;</span><br><span class="line">      for( let i=0; i&lt;nodes.length; i++)&#123;</span><br><span class="line">        nodes[i].classList.add(value)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.setText = function(text)&#123;</span><br><span class="line">    for(let i=0; i&lt;nodes.length; i++)&#123;</span><br><span class="line">      nodes[i].textContent = text</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return nodes</span><br><span class="line">&#125;</span><br><span class="line">window.$ = jQuery</span><br><span class="line">var $div = $(&apos;div&apos;)</span><br><span class="line">$div.addClass([&apos;blue&apos;])</span><br><span class="line">$div.setText([&apos;hello world&apos;])</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="entry-meta entry-footer">
       
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
       
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
+
       
             
       
@@ -217,193 +262,30 @@ var themeMenus = {};
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/10/08/Box Model/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Box Model</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
     
+      <ol class="nav">无</ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" 搜索…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="搜索">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/hexoBlog/',
-        CONTENT_URL: '/hexoBlog/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/hexoBlog/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系方式</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/kirbey" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:605464527@qq.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/Box Model/">Box Model</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/闭包/">什么是&#39;闭包&#39;</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/我的第一篇博客/">我的第一篇博客</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">3</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/hexoBlog/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/hexoBlog/tags/javaScript/" style="font-size: 20px;">javaScript</a> <a href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/" style="font-size: 10px;">这篇博客用来测试HEXO是否搭建并上传成功</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">4</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
