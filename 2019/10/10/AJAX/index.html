@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>ajax | Kirbey&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="javaScript">
+  
+  
+  
+  
+  <meta name="description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。 AJAX 不是新的编程语言，而是一种使用现有标准的新方法。 AJAX最大的优点是，在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。 AJAX不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/10/AJAX/index.html">
+<meta property="og:site_name" content="Kirbey&#39;s blog">
+<meta property="og:description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。 AJAX 不是新的编程语言，而是一种使用现有标准的新方法。 AJAX最大的优点是，在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。 AJAX不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-99d94901497883d60f56942fcad1f3f4_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-a89211267944aa46adcd3ee56b6b983f_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-d2f87fa33f7963076e62f5c7d1c0c5db_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-efd543e42518a41e3255765e56217ed2_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-191839cc845f8fbae5aa474c380a2567_hd.jpg">
+<meta property="og:updated_time" content="2019-10-10T15:54:43.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AJAX">
+<meta name="twitter:description" content="AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。 AJAX 不是新的编程语言，而是一种使用现有标准的新方法。 AJAX最大的优点是，在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。 AJAX不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-99d94901497883d60f56942fcad1f3f4_hd.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/hexoBlog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/hexoBlog/css/hiero.css">
+  <link rel="stylesheet" href="/hexoBlog/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/hexoBlog/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/hexoBlog/"] = "首页"; 
+
+  themeMenus["/hexoBlog/archives"] = "归档"; 
+
+  themeMenus["https://kirbey.github.io/library/resume-3/resume-3.html"] = "关于"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexoBlog/" title="Kirbey&#39;s blog" rel="home"> Kirbey&#39;s blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/hexoBlog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/hexoBlog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="https://kirbey.github.io/library/resume-3/resume-3.html">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/hexoBlog/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-AJAX" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      AJAX
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/hexoBlog/2019/10/10/AJAX/" class="article-date">
+	  <time datetime="2019-10-10T15:42:59.000Z" itemprop="datePublished">十月 10, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</p>
+<p>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。</p>
+<p>AJAX最大的优点是，在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。</p>
+<p>AJAX不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。</p>
+<a id="more"></a>
+<p>AJAX应用：</p>
+<p>运用XHTML+CSS来表达资讯；</p>
+<p>运用javaScript操作DOM来执行动态效果；</p>
+<p>运用XML和XSLT来操作资料；</p>
+<p>运用XMLHttpRequest或新的Fetch API与网页服务器进行异步资料交换；</p>
+<p>注意：AJAX与Flash、Silverlight和Java Applet等RIA技术是有区分的。</p>
+<p>什么是AJAX：</p>
+<p>AJAX = 异步javaScript和XML。</p>
+<p>AJAX是一种用于创建快速动态网页的技术。</p>
+<p>通过在后台与服务器进行少量数据交换，AJAX可以使网页实现异步更新。只意味着可以在不重新加载这个网页的情况下，对网页的部分进行更新。</p>
+<p>传统的网页要实现更新必须重新加载整个页面。</p>
+<p>有很多使用AJAX的应用程序案例，渣浪，google地图，开心网等。</p>
+<p>AJAX工作原理：</p>
+<img src="https://pic1.zhimg.com/80/v2-99d94901497883d60f56942fcad1f3f4_hd.jpg" class="AJAX工作原理" title="[width] [height] title text " alt="AJAX工作原理">
+
+<p>AJAX使基于现有的internet标准</p>
+<p>并且联合使用它们：</p>
+<p>XMLHttpRequest对象（异步的服务器交换数据）；</p>
+<p>javaScript/DOM（信息显示/交互）；</p>
+<p>CSS（给数据定义样式）；</p>
+<p>XML（作为转换数据的格式）；</p>
+<p>Google Suggest<br>在 2005 年，Google 通过其 Google Suggest 使 AJAX 变得流行起来。</p>
+<p>Google Suggest 使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框输入关键字时，JavaScript 会把这些字符发送到服务器，然后服务器会返回一个搜索建议的列表。</p>
+<p>XMLHttpRequest对象</p>
+<p>所有现代浏览器均支持XMLHttpRequest对象。</p>
+<p>XMLHttpRequest用于在后台与服务器交换数据，这意味着再不用加载整个页面的情况下，对王爷的部分进行更新。</p>
+<p>创建XMLHttpRequest对象</p>
+<p>所有现代浏览器均内建XMLHttprequest对象</p>
+<p>创建XMLHttpRequest对象的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var iable=new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xmlhttp;</span><br><span class="line">if (window.XMLHttpRequest)</span><br><span class="line">&#123;</span><br><span class="line">    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span><br><span class="line">    xmlhttp=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    // IE6, IE5 浏览器执行代码</span><br><span class="line">    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>向服务器发送请求：</p>
+<p>如需将请求发送到服务器，我们使用XMLHttpRequest对象的open（）和send（）方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;ajax_info.txt&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<img src="https://pic4.zhimg.com/80/v2-a89211267944aa46adcd3ee56b6b983f_hd.jpg" class="向服务器发送请求" title="[width] [height] title text " alt="向服务器发送请求">
+<p>GET还是POST</p>
+<p>与POST相比GET更快也更简单，并且在大部分情况下都能用。</p>
+<p>然而，在以下情况中请使用POST请求：</p>
+<p>无法使用缓存文件（更新服务器上的数据或文件库）</p>
+<p>向服务器发送大量数据（POST没有数据量限制）</p>
+<p>发送包含未知字符的用户输入时，POST也比GET更可靠。</p>
+<p>GET请求</p>
+<p>一个简单的GET请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中你可能得到的时缓存的结果。</p>
+<p>为了避免这种情况请向URL添加一个唯一的ID:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get.php?t=&quot; + Math.random(),true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p>如果你希望通过GET请求向服务器发送信息请向URL添加信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/demo_get2.php?fname=Henry&amp;lname=Ford&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p>POET请求</p>
+<p>一个简单的POST请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post.php&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br></pre></td></tr></table></figure>
+
+<p>如果需要向HTML表单那样POST数据，请使用setRequestHeader（）来添加HTTP头，然后在send（）方法中规定您希望发送的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.open(&quot;POST&quot;,&quot;/try/ajax/demo_post2.php&quot;,true);</span><br><span class="line">xmlhttp.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">xmlhttp.send(&quot;fname=Henry&amp;lname=Ford&quot;);</span><br></pre></td></tr></table></figure>
+
+<img src="https://pic4.zhimg.com/80/v2-d2f87fa33f7963076e62f5c7d1c0c5db_hd.jpg" class="POST请求" title="[width] [height] title text " alt="POST请求">
+<p>URL-服务器上的文件</p>
+<p>open（）方法的url参数是服务器上文件的地址：</p>
+<p>xmlhttp.open(“GET”,”ajax_test.html”,true);<br>该文件可以是任何类型的文件，比如txt或xml，或者服务器脚本文件，比如.asp或.php</p>
+<p>异步ture或false？</p>
+<p>AJAX指的是异步javaScript和XML。</p>
+<p>XMLHttpRequest对象如果要用AJAX的话，其open（）方法的async参数必须设置为ture：</p>
+<p>xmlhttp.open(“GET”,”ajax_test.html”,true);<br>位于web从业人员来叔发送异步请求是一个巨大的进步，很多在服务器执行的任务都相当费时。在AJAX出现之前这可能会导致应用程序挂起或停止。</p>
+<p>通过AJAX，javaScript可以不用等待服务器的响应，而是：</p>
+<p>在等待服务器响应时执行其他脚本。</p>
+<p>当响应就绪后对其进行处理。</p>
+<p>Async=ture</p>
+<p>当使用async=ture时，请规定在响应处于onreadystatechange事件中的就绪状态时执行的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange=function()</span><br><span class="line">&#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">        document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.open(&quot;GET&quot;,&quot;/try/ajax/ajax_info.txt&quot;,true);</span><br><span class="line">xmlhttp.send();</span><br><span class="line">Async=false</span><br></pre></td></tr></table></figure>
+
+<p>如果使用Async=false，请将open（）方法中的打三个参数设置为false：</p>
+<p>xmlhttp.open(“GET”,”test1.txt”,false);<br>不推荐使用async=false，但是对一些小的请求也是可以的：</p>
+<p>请记住，JavaScript 会等到服务器响应就绪才继续执行。如果服务器繁忙或缓慢，应用程序会挂起或停止。</p>
+<p>注意：当您使用 async=false 时，请不要编写 onreadystatechange 函数 - 把代码放到 send() 语句后面即可。</p>
+<p>AJAX-服务器响应</p>
+<p>如需获取来自服务器的响应，请使用XMLHttpRequest对象的response Text或responseXML属性。</p>
+<img src="https://pic3.zhimg.com/80/v2-efd543e42518a41e3255765e56217ed2_hd.jpg" class="服务器响应" title="[width] [height] title text " alt="服务器响应">
+
+<p>responseText属性</p>
+<p>如果来自服务器的响应并非XML，请使用responseText属性。</p>
+<p>responseText属性返回字符串形式的响应，因此可以这样使用：</p>
+<p>document.getElementById(“myDiv”).innerHTML=xmlhttp.responseText;<br>responseXML属性</p>
+<p>如果来自服务器的响应是XML，而且需要作为XML对象进行解析，使用responseXML属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlDoc=xmlhttp.responseXML;</span><br><span class="line">txt=&quot;&quot;;</span><br><span class="line">x=xmlDoc.getElementsByTagName(&quot;ARTIST&quot;);</span><br><span class="line">for (i=0;i&lt;x.length;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].childNodes[0].nodeValue + &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">document.getElementById(&quot;myDiv&quot;).innerHTML=txt;</span><br></pre></td></tr></table></figure>
+
+<p>onreadystatechange事件</p>
+<p>当请求被发送到服务器时，需要执行一些基于响应的任务。</p>
+<p>每当readystate改变时，就会出发onreadystatechange事件。</p>
+<p>ready state属性存有XMLHttpRequest的状态信息。</p>
+<p>下面时XMLHttpRequest对象的三个重要属性：</p>
+<img src="https://pic4.zhimg.com/80/v2-191839cc845f8fbae5aa474c380a2567_hd.jpg" class="XMLHttpRequest对象的三个重要属性" title="[width] [height] title text " alt="XMLHttpRequest对象的三个重要属性">
+
+<p>在onreadystatechange事件中，我们规定当服务器响应已经做好被处理的准备时所执行的任务。</p>
+<p>当readystate的值为4或状态码为200时，表示相应已就绪。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.onreadystatechange=function()</span><br><span class="line">&#123;</span><br><span class="line">    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">    &#123;</span><br><span class="line">        document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：onreadystatechange 事件被触发 4 次（0 - 4）, 分别是： 0-1、1-2、2-3、3-4，对应着 readyState 的每个变化。</p>
+<p>使用回调函数</p>
+<p>回调函数是一种使用参数的形式传递给另一个函数的函数</p>
+<p>如果你的网站上存在多个AJAX任务，那么你应该为创建XMLHttpRequest对象编写一个标准的函数，并为每个AJAX任务调用该函数。</p>
+<p>该函数调用应包含URL已经发生onreadystatechange事件时执行的任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function myFunction()</span><br><span class="line">&#123;</span><br><span class="line">    loadXMLDoc(&quot;/try/ajax/ajax_info.txt&quot;,function()</span><br><span class="line">    &#123;</span><br><span class="line">        if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)</span><br><span class="line">        &#123;</span><br><span class="line">            document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/10/08/vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">vuex</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav">无</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Kirbey&#39;s blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/hexoBlog/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://kirbey.github.io/library/resume-3/resume-3.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/hexoBlog/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/hexoBlog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
