@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Kirbey&#39;s blog">
 <meta property="og:description" content="字符串扩展常用的一些方法  at() 1234// 参数传入角标，返回值为角标对应的字符&amp;apos;abc&amp;apos;.at(0) // &amp;apos;a&amp;apos;&amp;apos;吉&amp;apos;.at(0)  // &amp;apos;吉&amp;apos;// 与ES5中charAt()不同之处，汉字的话ES5会返回对应Unicode编码，js内部用UTF-16  includes(),startsWith(),e">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-18T08:00:52.569Z">
+<meta property="og:updated_time" content="2019-10-18T08:04:46.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6常用语法">
 <meta name="twitter:description" content="字符串扩展常用的一些方法  at() 1234// 参数传入角标，返回值为角标对应的字符&amp;apos;abc&amp;apos;.at(0) // &amp;apos;a&amp;apos;&amp;apos;吉&amp;apos;.at(0)  // &amp;apos;吉&amp;apos;// 与ES5中charAt()不同之处，汉字的话ES5会返回对应Unicode编码，js内部用UTF-16  includes(),startsWith(),e">
@@ -193,9 +193,12 @@ var themeMenus = {};
 </li>
 <li><p>includes(),startsWith(),endsWith()<br>·includes(),返回值为布尔值，表示能否找到参数的字符串<br>·startsWith(),返回值为布尔值，表示参数字符串是否在原字符串的头部<br>·endsWith(),返回布尔值，表示参数字符串是否在原字符串的尾部<br>·这三个方法都支持第二个参数，表示开始搜索的位置。endsWith的行为与其他两个方法有所不同。它针对前N个字符，而其他两个方法针对从第n个位置直到字符串结束。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;Hello World&apos;</span><br><span class="line">str.includes(&apos;Hello&apos;)   // true</span><br><span class="line">str.startsWith(&apos;Hello&apos;) // true</span><br><span class="line">str.endsWith(&apos;d&apos;)   // true</span><br><span class="line">str.startsWith(&apos;world&apos;, 6) // true</span><br><span class="line">str.endsWith(&apos;Hello&apos;, 5) // true</span><br><span class="line">str.includes(&apos;Hello&apos;, 6) // false</span><br></pre></td></tr></table></figure>
+
 </li>
-<li><p>repeat()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;x&apos;.repeat(3) // &quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+</ol>
+<a id="more"></a>
+<ol start="3">
+<li>repeat()<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;x&apos;.repeat(3) // &quot;xxx&quot;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
