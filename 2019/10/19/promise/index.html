@@ -13,19 +13,36 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>Kirbey&#39;s blog</title>
+  <title>promise | Kirbey&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="javaScript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kirbey&#39;s blog">
-<meta property="og:url" content="https://kirbey.github.io/hexoBlog/index.html">
+  
+  <meta name="description" content="promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列 为什么会有promise为了避免界面冻结同步：假设你去了一家饭店，找个位置，叫来服务员，这个时候服务员对你说，对不起我是“同步”服务员，我要服务完这张桌子才能招呼你。那桌客人明明已经吃上了，你只是想要个菜单，这么小的动作，服务员却">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="promise">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/19/promise/index.html">
 <meta property="og:site_name" content="Kirbey&#39;s blog">
+<meta property="og:description" content="promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列 为什么会有promise为了避免界面冻结同步：假设你去了一家饭店，找个位置，叫来服务员，这个时候服务员对你说，对不起我是“同步”服务员，我要服务完这张桌子才能招呼你。那桌客人明明已经吃上了，你只是想要个菜单，这么小的动作，服务员却">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-f36baae9a21490c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-53b61cb990d856b5.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-7aa75490f79e0725.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-d93b7cf287478e43.png?imageMogr2/auto-orient/strip|imageView2/2/w/860/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-5e3ab96cbdcde863.png?imageMogr2/auto-orient/strip|imageView2/2/w/861/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-f63f673f5fbb74d1.png?imageMogr2/auto-orient/strip|imageView2/2/w/917/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-947df4320e99263b.png?imageMogr2/auto-orient/strip|imageView2/2/w/417/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-1aa27776f33dc101.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-a1d408c57330e14b.png?imageMogr2/auto-orient/strip|imageView2/2/w/460/format/webp">
+<meta property="og:updated_time" content="2019-10-19T09:25:10.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kirbey&#39;s blog">
+<meta name="twitter:title" content="promise">
+<meta name="twitter:description" content="promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列 为什么会有promise为了避免界面冻结同步：假设你去了一家饭店，找个位置，叫来服务员，这个时候服务员对你说，对不起我是“同步”服务员，我要服务完这张桌子才能招呼你。那桌客人明明已经吃上了，你只是想要个菜单，这么小的动作，服务员却">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/15311104-f36baae9a21490c7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
   
     <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
   
@@ -79,7 +96,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -151,17 +168,15 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-    <article id="post-promise"  class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-promise" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
       <header class="article-header">
         
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/19/promise/">promise</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      promise
     </h1>
   
 
@@ -174,6 +189,10 @@ var themeMenus = {};
 	</a>
 
       
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -256,685 +275,58 @@ var themeMenus = {};
       
             
       
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/10/18/ES6常用语法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ES6常用语法</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
     
-
-  
-    <article id="post-ES6常用语法"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#promise是什么"><span class="nav-number">1.</span> <span class="nav-text">promise是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么会有promise"><span class="nav-number">2.</span> <span class="nav-text">为什么会有promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为了避免界面冻结"><span class="nav-number">2.1.</span> <span class="nav-text">为了避免界面冻结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步操作的常见语法"><span class="nav-number">3.</span> <span class="nav-text">异步操作的常见语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#有了nodejs以后对异步的依赖进一步加剧了"><span class="nav-number">3.1.</span> <span class="nav-text">有了nodejs以后对异步的依赖进一步加剧了</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步回调的问题"><span class="nav-number">4.</span> <span class="nav-text">异步回调的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#promise"><span class="nav-number">5.</span> <span class="nav-text">promise</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#promise详解"><span class="nav-number">5.1.</span> <span class="nav-text">promise详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单示例"><span class="nav-number">5.1.1.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分两次，顺序执行"><span class="nav-number">5.1.2.</span> <span class="nav-text">分两次，顺序执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#promise完成后then"><span class="nav-number">5.1.3.</span> <span class="nav-text">promise完成后then()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#假如在-then-的函数里面不返回新的promise，会怎样？"><span class="nav-number">5.1.4.</span> <span class="nav-text">假如在.then()的函数里面不返回新的promise，会怎样？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实战示例，回调地狱和promise对比："><span class="nav-number">6.</span> <span class="nav-text">实战示例，回调地狱和promise对比：</span></a></li></ol>
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/18/ES6常用语法/">ES6常用语法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/18/ES6常用语法/" class="article-date">
-	  <time datetime="2019-10-18T07:38:41.000Z" itemprop="datePublished">十月 18, 2019</time>
-	</a>
-
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/18/ES6常用语法/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            字符串扩展常用的一些方法
-
-at()
-1234// 参数传入角标，返回值为角标对应的字符&apos;abc&apos;.at(0) // &apos;a&apos;&apos;吉&apos;.at(0)  // &apos;吉&apos;// 与ES5中charAt()不同之处，汉字的话ES5会返回对应Unicode编码，js内部用UTF-16
-
-includes(),startsWith(...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/18/ES6常用语法/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-入门vuex（vue状态管理）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/">入门vuex（vue状态管理）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/" class="article-date">
-	  <time datetime="2019-10-16T01:47:00.000Z" itemprop="datePublished">十月 16, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            #Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。
-#什么是“状态管理模式”？让我们从一个简单的 Vue...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-AJAX"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/10/AJAX/">AJAX</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/10/AJAX/" class="article-date">
-	  <time datetime="2019-10-10T15:42:59.000Z" itemprop="datePublished">十月 10, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/10/AJAX/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
-AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
-AJAX最大的优点是，在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
-AJAX不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
-
-AJAX应用：
-运用XHTML+...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/10/AJAX/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-封装一个函数"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/封装一个函数/" class="article-date">
-	  <time datetime="2019-10-08T14:29:43.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/封装一个函数/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。
-首先我们写一个简单的HTML
-
-
-
-
-
-
-
-
-接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class
-
-
-
-注意在使用forEach() API的时候 对象必须是一个数组或伪数组。因此在给这个函数传递参数的时候需要加上[].
-
-
-用来添加text Conte...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/08/封装一个函数/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-Box Model"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/Box Model/">Box Model</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/Box Model/" class="article-date">
-	  <time datetime="2019-10-08T12:54:31.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/Box Model/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            
-
-
-
-首先理解什么是盒模型：
-网页可以看成是由许多个盒子通过不同的堆积方式组成的一个仓库，网页上的每个HTML元素都被浏览器看成是一个个矩形的盒子，这个盒子由元素的内容，填充，边框，边界组成。默认边框背景色透明，默认看不到盒子：（图一）
-Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(边框) - 围绕在内边距和内容外的边框。Padding(内边距) - 清除内容...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/08/Box Model/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-闭包"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/闭包/">什么是&#39;闭包&#39;</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/闭包/" class="article-date">
-	  <time datetime="2019-10-08T03:39:10.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/闭包/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/4" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            
-
-闭包的概念非常简单：闭包就是能够读取其他函数内部变量的函数。
-闭包不止作为一个优化代码的重要途经（可以帮助我们省去大量重复的代码，使整篇代码看起来清晰明朗）同时也具备两个重要功能：1、保护函数内的变量安全2、在内存中维持一个变量。要理解这两点的具体含义首先我们要理解变量的作用域：当你在一个函数内部声明变量（即局部变量）时一定要用 var ，否则实际是在申明一个全局变量。通常我们是不能在函...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/08/闭包/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-我的第一篇博客"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/我的第一篇博客/" class="article-date">
-	  <time datetime="2019-10-07T17:57:28.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-
-
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" 搜索…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="搜索">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/hexoBlog/',
-        CONTENT_URL: '/hexoBlog/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/hexoBlog/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系方式</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/kirbey" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:605464527@qq.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/19/promise/">promise</a></h6>
-              <span>十月 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/18/ES6常用语法/">ES6常用语法</a></h6>
-              <span>十月 18, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/">入门vuex（vue状态管理）</a></h6>
-              <span>十月 16, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/10/AJAX/">AJAX</a></h6>
-              <span>十月 10, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/Box Model/">Box Model</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">7</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/hexoBlog/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/hexoBlog/tags/javaScript/" style="font-size: 20px;">javaScript</a> <a href="/hexoBlog/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/" style="font-size: 10px;">这篇博客用来测试HEXO是否搭建并上传成功</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">8</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
