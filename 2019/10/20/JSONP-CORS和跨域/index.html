@@ -13,20 +13,28 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>测试 | Kirbey&#39;s blog</title>
+  <title>jsonp cors和跨域 | Kirbey&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="javaScript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="https://kirbey.github.io/hexoBlog/测试/index.html">
+  
+  <meta name="description" content="首先明确：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。  JSONP（json with padding 填充式json）利用了使用src引用静态资源时不受跨域限制的机制。主要在客户端搞一个回调做一些数据接收与操作的处理，并把这个回调函数名告知服务端，而服务端需要做的是按照javascript的语法把数据放">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSONP CORS和跨域">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/20/JSONP-CORS和跨域/index.html">
 <meta property="og:site_name" content="Kirbey&#39;s blog">
+<meta property="og:description" content="首先明确：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。  JSONP（json with padding 填充式json）利用了使用src引用静态资源时不受跨域限制的机制。主要在客户端搞一个回调做一些数据接收与操作的处理，并把这个回调函数名告知服务端，而服务端需要做的是按照javascript的语法把数据放">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-07T17:31:33.194Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9487719-37852d7e52a95f8a.png?imageMogr2/auto-orient/strip|imageView2/2/w/744/format/webp">
+<meta property="og:updated_time" content="2019-10-20T07:49:18.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试">
+<meta name="twitter:title" content="JSONP CORS和跨域">
+<meta name="twitter:description" content="首先明确：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。  JSONP（json with padding 填充式json）利用了使用src引用静态资源时不受跨域限制的机制。主要在客户端搞一个回调做一些数据接收与操作的处理，并把这个回调函数名告知服务端，而服务端需要做的是按照javascript的语法把数据放">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/9487719-37852d7e52a95f8a.png?imageMogr2/auto-orient/strip|imageView2/2/w/744/format/webp">
   
     <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
   
@@ -80,7 +88,7 @@ var themeMenus = {};
 </script>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   <header id="allheader" class="site-header" role="banner">
@@ -152,7 +160,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main"><article id="page-"  class="article article-type-page" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-JSONP-CORS和跨域" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -160,7 +168,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      测试
+      JSONP CORS和跨域
     </h1>
   
 
@@ -168,8 +176,8 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/hexoBlog/测试/index.html" class="article-date">
-	  <time datetime="2019-10-07T17:31:33.000Z" itemprop="datePublished">十月 8, 2019</time>
+	Posted on <a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/" class="article-date">
+	  <time datetime="2019-10-20T07:39:20.000Z" itemprop="datePublished">十月 20, 2019</time>
 	</a>
 
       
@@ -180,12 +188,45 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><strong><em>首先明确</em></strong>：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。</p>
+<ul>
+<li>JSONP（json with padding 填充式json）<br>利用了使用src引用静态资源时不受跨域限制的机制。主要在客户端搞一个回调做一些数据接收与操作的处理，并把这个回调函数名告知服务端，而服务端需要做的是按照javascript的语法把数据放到约定好的回调函数之中即可。jQuery很早之前就已经吧JSONP语法糖化了，使用起来会更加方便。</li>
+<li>CORS（Cross-origin resource sharing 跨域资源共享）<br>依附于AJAX，通过添加HTTP Hearder部分字段请求与获取有权限访问的资源。CORS对开发者是透明的，因为浏览器会自动根据请求的情况（简单和复杂）做出不同的处理。CORS的关键是服务端的配置支持。由于CORS是W3C中一项较“新”的方案，以至于各大网页解析引擎还没有对其进行严格规格的实现，所以不同引擎下可能会有一些不一致。</li>
+</ul>
+<p><strong><em>两者优点与缺点大致互补，放在一块介绍：</em></strong></p>
+<ul>
+<li>JSONP的主要优势在于对浏览器的支持较好；虽然目前主流浏览器支持CORS，但IE10以下不支持CORS。</li>
+<li>JSONP只能用于获取资源（即只读，类似于GET请求）；CORS支持所有类型的HTTP请求，功能完善。（这点JSONP被玩虐，但大部分情况下GET已经能满足需求了）</li>
+<li>JSONP的错误处理机制并不完善，我们没办法进行错误处理；而CORS可以通过onerror事件监听错误，并且浏览器控制台会看到报错信息，利于排查。</li>
+<li>JSONP只会发一次请求；而对于复杂请求，CORS会发两次请求。</li>
+<li>始终觉得安全性这个东西是相对的，没有绝对的安全，也做不到绝对的安全。毕竟JSONP并不是跨域规范，它存在很明显的安全问题：callback参数注入和资源访问授权设置。CORS好歹也算是个跨域规范，在资源访问授权方面进行了限制（Access-Control-Allow-Origin），而且标准浏览器都做了安全限制，比如拒绝手动设置origin字段，相对来说是安全了一点。</li>
+<li>但是回过头来看一下，就算是不安全的JSONP，我们依然可以在服务端端进行一些权限的限制，服务端和客户端也都依然可以做一些注入的安全处理，哪怕被攻克，它也只能读一些东西。就算是比较安全的CORS，同样可以在服务端设置出现漏洞或者不在浏览器的跨域限制环境下进行攻击，而且它不仅可以读，还可以写。<a id="more"></a>
+<h1 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h1></li>
+</ul>
+<p>如果你需要兼容IE低版本浏览器，无疑，JSONP。</p>
+<p>如果你需要对服务端资源进行谢操作，无疑，CORS。</p>
+<p>其他情况的话，根据自己的对需求的分析和对两者的理解来吧。</p>
+<h1 id="什么是跨域："><a href="#什么是跨域：" class="headerlink" title="什么是跨域："></a>什么是跨域：</h1><ul>
+<li>跨域：指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对javascript施加的安全限制。</li>
+<li>例如：a页面想获取b页面资源，如果a、b页面的协议、域名、端口、子域名不同，所进行的访问行动都是跨域的，而浏览器为了安全问题一般都限制了跨域访问，也就是不允许跨域请求资源。注意：跨域限制访问，其实是浏览器的限制。理解这一点很重要！！！</li>
+<li>同源策略：是指协议，域名，端口都要相同，其中有一个不同都会产生跨域；<h2 id="跨域访问示例"><a href="#跨域访问示例" class="headerlink" title="跨域访问示例"></a>跨域访问示例</h2>假设有两个网站，A网站部署在：<a href="http://localhost:81" target="_blank" rel="noopener">http://localhost:81</a> 即本地ip端口81上；B网站部署在：<a href="http://localhost:82" target="_blank" rel="noopener">http://localhost:82</a> 即本地ip端口82上。现在A网站的页面想去访问B网站的信息，A网站页面的代码如下（这里使用jquery的异步请求）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(function ()&#123;</span><br><span class="line"></span><br><span class="line">    $.get(&quot;http://localhost:82/api/values&quot;, &#123;&#125;,function (result) &#123;</span><br><span class="line"></span><br><span class="line">          $(&quot;#show&quot;).html(result);</span><br><span class="line"></span><br><span class="line">  &#125;)&#125;)；</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<img src="https://upload-images.jianshu.io/upload_images/9487719-37852d7e52a95f8a.png?imageMogr2/auto-orient/strip|imageView2/2/w/744/format/webp" class="v" title="[width] [height] title text " alt="报错信息">
+<p>从错误信息可以看出以上出现了跨域问题！</p>
+
       
     </div>
     <footer class="entry-meta entry-footer">
       
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
       
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
+
       
             
       
@@ -217,217 +258,30 @@ var themeMenus = {};
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/10/19/promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">promise</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 <!-- Table of Contents -->
 
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
     
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#应用场景："><span class="nav-number">1.</span> <span class="nav-text">应用场景：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是跨域："><span class="nav-number">2.</span> <span class="nav-text">什么是跨域：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域访问示例"><span class="nav-number">2.1.</span> <span class="nav-text">跨域访问示例</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    <div class="widget-wrap" style="margin: 20px 0;">
-	<div id="search-form-wrap">
-
-    <form class="search-form">
-        <label style="width: 75%;">
-            <span class="screen-reader-text">Search for:</span>
-            <input type="search" class="search-field" style="height: 42px;" placeholder=" 搜索…" value="" name="s" title="Search for:">
-        </label>
-        <input type="submit" class="search-form-submit" value="搜索">
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
-        },
-        ROOT_URL: '/hexoBlog/',
-        CONTENT_URL: '/hexoBlog/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/hexoBlog/js/insight.js"></script>
-
-</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">联系方式</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/kirbey" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:605464527@qq.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>最新文章</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/">JSONP CORS和跨域</a></h6>
-              <span>十月 20, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/19/promise/">promise</a></h6>
-              <span>十月 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/18/ES6常用语法/">ES6常用语法</a></h6>
-              <span>十月 18, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/">入门vuex（vue状态管理）</a></h6>
-              <span>十月 16, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/10/AJAX/">AJAX</a></h6>
-              <span>十月 10, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a></h6>
-              <span>十月 8, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">8</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/hexoBlog/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/hexoBlog/tags/javaScript/" style="font-size: 20px;">javaScript</a> <a href="/hexoBlog/tags/vuex/" style="font-size: 10px;">vuex</a> <a href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/" style="font-size: 10px;">这篇博客用来测试HEXO是否搭建并上传成功</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">9</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
       <footer id="footer" class="site-footer">
