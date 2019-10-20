@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-947df4320e99263b.png?imageMogr2/auto-orient/strip|imageView2/2/w/417/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-1aa27776f33dc101.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15311104-a1d408c57330e14b.png?imageMogr2/auto-orient/strip|imageView2/2/w/460/format/webp">
-<meta property="og:updated_time" content="2019-10-19T09:25:10.575Z">
+<meta property="og:updated_time" content="2019-10-20T02:51:46.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="promise">
 <meta name="twitter:description" content="promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列 为什么会有promise为了避免界面冻结同步：假设你去了一家饭店，找个位置，叫来服务员，这个时候服务员对你说，对不起我是“同步”服务员，我要服务完这张桌子才能招呼你。那桌客人明明已经吃上了，你只是想要个菜单，这么小的动作，服务员却">
@@ -202,6 +202,7 @@ var themeMenus = {};
 <h1 id="异步操作的常见语法"><a href="#异步操作的常见语法" class="headerlink" title="异步操作的常见语法"></a>异步操作的常见语法</h1><p>1.事件监听</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;#start&apos;).addEventListener(&apos;click&apos;, start, false);</span><br><span class="line">function start() &#123;</span><br><span class="line">  // 响应事件，进行相应的操作</span><br><span class="line">&#125;</span><br><span class="line">// jquery on 监听</span><br><span class="line">$(&apos;#start&apos;).on(&apos;click&apos;, start)</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>2.回调</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 比较常见的有ajax</span><br><span class="line">$.ajax(&apos;http://www.wyunfei.com/&apos;, &#123;</span><br><span class="line"> success (res) &#123;</span><br><span class="line">   // 这里可以监听res返回的数据做回调逻辑的处理</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 或者在页面加载完毕后回调</span><br><span class="line">$(function() &#123;</span><br><span class="line"> // 页面结构加载完成，做回调逻辑处理</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
