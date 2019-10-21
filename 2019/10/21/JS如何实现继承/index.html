@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>js如何实现继承 | Kirbey&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="javaScript">
+  
+  
+  
+  
+  <meta name="description" content="js继承有五种实现方式：1、对象冒充123456function Parent(username)&amp;#123;    this.username = username;    this.hello = function()&amp;#123;      alert(this.username);    &amp;#125;  &amp;#125;  123456789101112131415161718function">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS如何实现继承">
+<meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/21/JS如何实现继承/index.html">
+<meta property="og:site_name" content="Kirbey&#39;s blog">
+<meta property="og:description" content="js继承有五种实现方式：1、对象冒充123456function Parent(username)&amp;#123;    this.username = username;    this.hello = function()&amp;#123;      alert(this.username);    &amp;#125;  &amp;#125;  123456789101112131415161718function">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-21T10:34:59.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS如何实现继承">
+<meta name="twitter:description" content="js继承有五种实现方式：1、对象冒充123456function Parent(username)&amp;#123;    this.username = username;    this.hello = function()&amp;#123;      alert(this.username);    &amp;#125;  &amp;#125;  123456789101112131415161718function">
+  
+    <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/hexoBlog/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/hexoBlog/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/hexoBlog/css/hiero.css">
+  <link rel="stylesheet" href="/hexoBlog/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/hexoBlog/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/hexoBlog/"] = "首页"; 
+
+  themeMenus["/hexoBlog/archives"] = "归档"; 
+
+  themeMenus["https://kirbey.github.io/library/resume-3/resume-3.html"] = "关于"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/hexoBlog/" title="Kirbey&#39;s blog" rel="home"> Kirbey&#39;s blog </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/hexoBlog/">首页</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/hexoBlog/archives">归档</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="https://kirbey.github.io/library/resume-3/resume-3.html">关于</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/hexoBlog/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-JS如何实现继承" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      JS如何实现继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/hexoBlog/2019/10/21/JS如何实现继承/" class="article-date">
+	  <time datetime="2019-10-21T10:19:03.000Z" itemprop="datePublished">十月 21, 2019</time>
+	</a>
+
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="js继承有五种实现方式："><a href="#js继承有五种实现方式：" class="headerlink" title="js继承有五种实现方式："></a>js继承有五种实现方式：</h1><h2 id="1、对象冒充"><a href="#1、对象冒充" class="headerlink" title="1、对象冒充"></a>1、对象冒充</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Parent(username)&#123;</span><br><span class="line">    this.username = username;</span><br><span class="line">    this.hello = function()&#123;</span><br><span class="line">      alert(this.username);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Child(username,password)&#123;</span><br><span class="line">  //通过以下3行实现将Parent的属性和方法追加到Child中，从而实现继承</span><br><span class="line">  //第一步：this.method是作为一个临时的属性，并且指向Parent所指向的对象，</span><br><span class="line">  //第二步：执行this.method方法，即执行Parent所指向的对象函数</span><br><span class="line">  //第三步：销毁this.method属性，即此时Child就已经拥有了Parent的所有属性和方法</span><br><span class="line">  this.method = Parent;</span><br><span class="line">  this.method(username);//最关键的一行</span><br><span class="line">  delete this.method;</span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br><span class="line">child.world();</span><br></pre></td></tr></table></figure>
+
+<p>  2、call()方法<br>  call方法是function类中的方法<br>  call方法的第一个参数的值赋值给类（即方法）中出现的this<br>  call方法的第二个参数开始依次赋值给类（即方法）所接受的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function test(str)&#123;</span><br><span class="line">  alert(this.name + &quot; &quot; + str);</span><br><span class="line">&#125;</span><br><span class="line">var object = new Object();</span><br><span class="line">object.name = &quot;zhangsan&quot;;</span><br><span class="line">test.call(object,&quot;langsin&quot;);//此时，第一个参数值object传递给了test类(即方法)中出现的this，而第二个参数&quot;langsin&quot;则赋值给了test类(即方法)的str</span><br><span class="line"></span><br><span class="line">function Parent(username)&#123;</span><br><span class="line">  this.username = username;</span><br><span class="line">  this.hello = function()&#123;</span><br><span class="line">    alert(this.username);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Child(username,password)&#123;</span><br><span class="line">  Parent.call(this,username);</span><br><span class="line">  </span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、apply"><a href="#3、apply" class="headerlink" title="3、apply()"></a>3、apply()</h2><p>  apply方法接受两个参数<br>  A、第一个参数与call方法的第一个参数一样，即赋值给类(即方法)中出现的this<br>  B、第二个参数为数组类型，这个数组中的每个元素依次赋值给类(即方法)所接受的参数<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> function Parent(username)&#123;</span><br><span class="line">  this.username = username;</span><br><span class="line">  this.hello = function()&#123;</span><br><span class="line">    alert(this.username);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Child(username,password)&#123;</span><br><span class="line">  Parent.apply(this,new Array(username));</span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br><span class="line">child.world();</span><br></pre></td></tr></table></figure></p>
+<p>  4、原型链方式<br>  <strong><em>即子类通过prototype将所有在父类中通过prototype追加的属性和方法都追加到Child，从而实现了继承</em></strong><br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hello = &quot;hello&quot;;</span><br><span class="line">Person.prototype.sayHello = function()&#123;</span><br><span class="line">  alert(this.hello);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = new Person();//这行的作用是：将Parent中将所有通过prototype追加的属性和方法都追加到Child，从而实现了继承</span><br><span class="line">Child.prototype.world = &quot;world&quot;;</span><br><span class="line">Child.prototype.sayWorld = function()&#123;</span><br><span class="line">  alert(this.world);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var c = new Child();</span><br><span class="line">c.sayHello();</span><br><span class="line">c.sayWorld();</span><br></pre></td></tr></table></figure></p>
+<p>  5、混合方式<br>  混合了call方式原型链方式<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  function Parent(hello)&#123;</span><br><span class="line">  this.hello = hello;</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.sayHello = function()&#123;</span><br><span class="line">  alert(this.hello);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child(hello,world)&#123;</span><br><span class="line">  Parent.call(this,hello);//将父类的属性继承过来</span><br><span class="line">  this.world = world;//新增一些属性</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype = new Parent();//将父类的方法继承过来</span><br><span class="line"></span><br><span class="line">Child.prototype.sayWorld = function()&#123;//新增一些方法</span><br><span class="line">  alert(this.world);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var c = new Child(&quot;zhangsan&quot;,&quot;lisi&quot;);</span><br><span class="line">c.sayHello();</span><br><span class="line">c.sayWorld();</span><br></pre></td></tr></table></figure></p>
+<h1 id="用class实现继承"><a href="#用class实现继承" class="headerlink" title="用class实现继承"></a>用class实现继承</h1><p>ES6提供了更接近传统语言的写法，引入了Class（类）这个概念。新的class写法让对象原型的写法更加清晰、更像面向对象编程的语法，也更加通俗易懂。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">   // 构造方法，实例化的时候将会被调用，如果不指定，那么会有一个不带参数的默认构造函数.</span><br><span class="line">   constructor(name,color) &#123;</span><br><span class="line">     this.name = name;</span><br><span class="line">     this.color = color;</span><br><span class="line">   &#125;</span><br><span class="line">   // toString 是原型对象上的属性</span><br><span class="line">   toString() &#123;</span><br><span class="line">     console.log(&apos;name:&apos; + this.name + &apos;,color:&apos; + this.color);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  </span><br><span class="line">var animal = new Animal(&apos;dog&apos;,&apos;white&apos;);</span><br><span class="line">animal.toString();</span><br><span class="line"></span><br><span class="line">console.log(animal.hasOwnProperty(&apos;name&apos;)); //true</span><br><span class="line">console.log(animal.hasOwnProperty(&apos;toString&apos;)); // false</span><br><span class="line">console.log(animal.__proto__.hasOwnProperty(&apos;toString&apos;)); // true</span><br><span class="line"></span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line"> constructor(action) &#123;</span><br><span class="line">   // 子类必须要在constructor中指定super 方法，否则在新建实例的时候会报错.</span><br><span class="line">   // 如果没有置顶consructor,默认带super方法的constructor将会被添加、</span><br><span class="line">   super(&apos;cat&apos;,&apos;white&apos;);</span><br><span class="line">   this.action = action;</span><br><span class="line"> &#125;</span><br><span class="line"> toString() &#123;</span><br><span class="line">   console.log(super.toString());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var cat = new Cat(&apos;catch&apos;)</span><br><span class="line">cat.toString();</span><br><span class="line"></span><br><span class="line">// 实例cat 是 Cat 和 Animal 的实例，和Es5完全一致。</span><br><span class="line">console.log(cat instanceof Cat); // true</span><br><span class="line">console.log(cat instanceof Animal); // true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/hexoBlog/2019/10/20/用-async-await-来处理异步/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">用 async/await 来处理异步</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">文章目录</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js继承有五种实现方式："><span class="nav-number">1.</span> <span class="nav-text">js继承有五种实现方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、对象冒充"><span class="nav-number">1.1.</span> <span class="nav-text">1、对象冒充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、apply"><span class="nav-number">1.2.</span> <span class="nav-text">3、apply()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用class实现继承"><span class="nav-number">2.</span> <span class="nav-text">用class实现继承</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Kirbey&#39;s blog All Rights Reserved.
+          
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/hexoBlog/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/hexoBlog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/hexoBlog/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://kirbey.github.io/library/resume-3/resume-3.html" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/hexoBlog/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/hexoBlog/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="https://dnqof95d40fo6.cloudfront.net/atw7f8.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

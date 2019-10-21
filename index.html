@@ -153,6 +153,66 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-JS如何实现继承"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/hexoBlog/2019/10/21/JS如何实现继承/">JS如何实现继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/hexoBlog/2019/10/21/JS如何实现继承/" class="article-date">
+	  <time datetime="2019-10-21T10:19:03.000Z" itemprop="datePublished">十月 21, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="js继承有五种实现方式："><a href="#js继承有五种实现方式：" class="headerlink" title="js继承有五种实现方式："></a>js继承有五种实现方式：</h1><h2 id="1、对象冒充"><a href="#1、对象冒充" class="headerlink" title="1、对象冒充"></a>1、对象冒充</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Parent(username)&#123;</span><br><span class="line">    this.username = username;</span><br><span class="line">    this.hello = function()&#123;</span><br><span class="line">      alert(this.username);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Child(username,password)&#123;</span><br><span class="line">  //通过以下3行实现将Parent的属性和方法追加到Child中，从而实现继承</span><br><span class="line">  //第一步：this.method是作为一个临时的属性，并且指向Parent所指向的对象，</span><br><span class="line">  //第二步：执行this.method方法，即执行Parent所指向的对象函数</span><br><span class="line">  //第三步：销毁this.method属性，即此时Child就已经拥有了Parent的所有属性和方法</span><br><span class="line">  this.method = Parent;</span><br><span class="line">  this.method(username);//最关键的一行</span><br><span class="line">  delete this.method;</span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br><span class="line">child.world();</span><br></pre></td></tr></table></figure>
+
+<p>  2、call()方法<br>  call方法是function类中的方法<br>  call方法的第一个参数的值赋值给类（即方法）中出现的this<br>  call方法的第二个参数开始依次赋值给类（即方法）所接受的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function test(str)&#123;</span><br><span class="line">  alert(this.name + &quot; &quot; + str);</span><br><span class="line">&#125;</span><br><span class="line">var object = new Object();</span><br><span class="line">object.name = &quot;zhangsan&quot;;</span><br><span class="line">test.call(object,&quot;langsin&quot;);//此时，第一个参数值object传递给了test类(即方法)中出现的this，而第二个参数&quot;langsin&quot;则赋值给了test类(即方法)的str</span><br><span class="line"></span><br><span class="line">function Parent(username)&#123;</span><br><span class="line">  this.username = username;</span><br><span class="line">  this.hello = function()&#123;</span><br><span class="line">    alert(this.username);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Child(username,password)&#123;</span><br><span class="line">  Parent.call(this,username);</span><br><span class="line">  </span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、apply"><a href="#3、apply" class="headerlink" title="3、apply()"></a>3、apply()</h2><p>  apply方法接受两个参数<br>  A、第一个参数与call方法的第一个参数一样，即赋值给类(即方法)中出现的this<br>  B、第二个参数为数组类型，这个数组中的每个元素依次赋值给类(即方法)所接受的参数<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> function Parent(username)&#123;</span><br><span class="line">  this.username = username;</span><br><span class="line">  this.hello = function()&#123;</span><br><span class="line">    alert(this.username);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Child(username,password)&#123;</span><br><span class="line">  Parent.apply(this,new Array(username));</span><br><span class="line">  this.password = password;</span><br><span class="line">  this.world = function()&#123;</span><br><span class="line">    alert(this.password);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var parent = new Parent(&quot;zhangsan&quot;);</span><br><span class="line">var child = new Child(&quot;lisi&quot;,&quot;123456&quot;);</span><br><span class="line">parent.hello();</span><br><span class="line">child.hello();</span><br><span class="line">child.world();</span><br></pre></td></tr></table></figure></p>
+<p>  4、原型链方式<br>  <strong><em>即子类通过prototype将所有在父类中通过prototype追加的属性和方法都追加到Child，从而实现了继承</em></strong><br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  function Person()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hello = &quot;hello&quot;;</span><br><span class="line">Person.prototype.sayHello = function()&#123;</span><br><span class="line">  alert(this.hello);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = new Person();//这行的作用是：将Parent中将所有通过prototype追加的属性和方法都追加到Child，从而实现了继承</span><br><span class="line">Child.prototype.world = &quot;world&quot;;</span><br><span class="line">Child.prototype.sayWorld = function()&#123;</span><br><span class="line">  alert(this.world);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var c = new Child();</span><br><span class="line">c.sayHello();</span><br><span class="line">c.sayWorld();</span><br></pre></td></tr></table></figure></p>
+<p>  5、混合方式<br>  混合了call方式原型链方式<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  function Parent(hello)&#123;</span><br><span class="line">  this.hello = hello;</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.sayHello = function()&#123;</span><br><span class="line">  alert(this.hello);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child(hello,world)&#123;</span><br><span class="line">  Parent.call(this,hello);//将父类的属性继承过来</span><br><span class="line">  this.world = world;//新增一些属性</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype = new Parent();//将父类的方法继承过来</span><br><span class="line"></span><br><span class="line">Child.prototype.sayWorld = function()&#123;//新增一些方法</span><br><span class="line">  alert(this.world);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var c = new Child(&quot;zhangsan&quot;,&quot;lisi&quot;);</span><br><span class="line">c.sayHello();</span><br><span class="line">c.sayWorld();</span><br></pre></td></tr></table></figure></p>
+<h1 id="用class实现继承"><a href="#用class实现继承" class="headerlink" title="用class实现继承"></a>用class实现继承</h1><p>ES6提供了更接近传统语言的写法，引入了Class（类）这个概念。新的class写法让对象原型的写法更加清晰、更像面向对象编程的语法，也更加通俗易懂。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">   // 构造方法，实例化的时候将会被调用，如果不指定，那么会有一个不带参数的默认构造函数.</span><br><span class="line">   constructor(name,color) &#123;</span><br><span class="line">     this.name = name;</span><br><span class="line">     this.color = color;</span><br><span class="line">   &#125;</span><br><span class="line">   // toString 是原型对象上的属性</span><br><span class="line">   toString() &#123;</span><br><span class="line">     console.log(&apos;name:&apos; + this.name + &apos;,color:&apos; + this.color);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">  </span><br><span class="line">var animal = new Animal(&apos;dog&apos;,&apos;white&apos;);</span><br><span class="line">animal.toString();</span><br><span class="line"></span><br><span class="line">console.log(animal.hasOwnProperty(&apos;name&apos;)); //true</span><br><span class="line">console.log(animal.hasOwnProperty(&apos;toString&apos;)); // false</span><br><span class="line">console.log(animal.__proto__.hasOwnProperty(&apos;toString&apos;)); // true</span><br><span class="line"></span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line"> constructor(action) &#123;</span><br><span class="line">   // 子类必须要在constructor中指定super 方法，否则在新建实例的时候会报错.</span><br><span class="line">   // 如果没有置顶consructor,默认带super方法的constructor将会被添加、</span><br><span class="line">   super(&apos;cat&apos;,&apos;white&apos;);</span><br><span class="line">   this.action = action;</span><br><span class="line"> &#125;</span><br><span class="line"> toString() &#123;</span><br><span class="line">   console.log(super.toString());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var cat = new Cat(&apos;catch&apos;)</span><br><span class="line">cat.toString();</span><br><span class="line"></span><br><span class="line">// 实例cat 是 Cat 和 Animal 的实例，和Es5完全一致。</span><br><span class="line">console.log(cat instanceof Cat); // true</span><br><span class="line">console.log(cat instanceof Animal); // true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-用-async-await-来处理异步"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -244,7 +304,7 @@ var themeMenus = {};
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/1" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/6" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             首先明确：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。
@@ -309,7 +369,7 @@ JSONP（json with padding 填充式json）利用了使用src引用静态资源�
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/19/promise/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/9" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/19/promise/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/6" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列
@@ -373,7 +433,7 @@ JSONP（json with padding 填充式json）利用了使用src引用静态资源�
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/18/ES6常用语法/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/18/ES6常用语法/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             字符串扩展常用的一些方法
@@ -441,7 +501,7 @@ includes(),startsWith(...
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/9" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             #Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。
@@ -505,7 +565,7 @@ includes(),startsWith(...
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/10/AJAX/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/10/AJAX/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/7" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
@@ -574,7 +634,7 @@ AJAX应用：
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/封装一个函数/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/9" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/08/封装一个函数/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。
@@ -654,7 +714,7 @@ AJAX应用：
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/Box Model/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/08/Box Model/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             
@@ -723,7 +783,7 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/闭包/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/3" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/08/闭包/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             
@@ -761,53 +821,12 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
     
 
   
-    <article id="post-我的第一篇博客"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+
+
+  <nav id="page-nav">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/我的第一篇博客/" class="article-date">
-	  <time datetime="2019-10-07T17:57:28.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/hexoBlog/page/2/">2</a><a class="extend next" rel="next" href="/hexoBlog/page/2/">下一页</a>
+  </nav>
 
 </section>
           <aside id="sidebar">
@@ -902,6 +921,18 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/21/JS如何实现继承/">JS如何实现继承</a></h6>
+              <span>十月 21, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/20/用-async-await-来处理异步/">用 async/await 来处理异步</a></h6>
               <span>十月 20, 2019</span>
             </div>
@@ -956,18 +987,6 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/10/AJAX/">AJAX</a></h6>
-              <span>十月 10, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -977,7 +996,7 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -987,7 +1006,7 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1007,7 +1026,7 @@ Margin(外边距) - 清除边框外的区域，外边距是透明的。Border(�
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">10</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">11</span></li></ul>
     </div>
   </div>
 
