@@ -30,7 +30,7 @@
 <meta property="og:description" content="async先说一下async的用法，它作为一个关键字放到函数前面， 123async function timeout() &amp;#123;　　return &amp;apos;hello world&amp;apos;;&amp;#125;  什么作用呢？它的调用会返回一个promise 对象。如果返回的promise 对象又通过then或catch方法注册了回调函数，那么它执行完毕后，注册的回调函数就会放到异步执行队列中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img2018.cnblogs.com/blog/1013082/201910/1013082-20191019134138324-1885815593.png">
-<meta property="og:updated_time" content="2019-10-20T08:13:20.156Z">
+<meta property="og:updated_time" content="2019-10-21T10:36:45.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 async&#x2F;await 来处理异步">
 <meta name="twitter:description" content="async先说一下async的用法，它作为一个关键字放到函数前面， 123async function timeout() &amp;#123;　　return &amp;apos;hello world&amp;apos;;&amp;#125;  什么作用呢？它的调用会返回一个promise 对象。如果返回的promise 对象又通过then或catch方法注册了回调函数，那么它执行完毕后，注册的回调函数就会放到异步执行队列中">
@@ -194,6 +194,7 @@ var themeMenus = {};
 <p>什么作用呢？它的调用会返回一个promise 对象。如果返回的promise 对象又通过then或catch方法注册了回调函数，那么它执行完毕后，注册的回调函数就会放到异步执行队列中，进而得到执行。如果返回的promise 对象没有注册回调函数，它的执行和普通的函数的执行看不出什么区别。给timeout返回的promise注册一个回调函数，然后调用一下看看。async 函数的调用和普通函数数没有区别，直接加括号调用就可以了，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async function timeout() &#123;</span><br><span class="line">    return &apos;hello world&apos;</span><br><span class="line">&#125;</span><br><span class="line">console.log(timeout());</span><br><span class="line">timeout().then(result =&gt; &#123;</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>看一下控制台(同时打印了timeout()的执行结果)</p>
 <img src="https://img2018.cnblogs.com/blog/1013082/201910/1013082-20191019134138324-1885815593.png" class="v" title="[width] [height] title text " alt="控制台">
 <ul>
