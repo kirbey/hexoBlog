@@ -153,6 +153,83 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-Vuex-getter"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/hexoBlog/2019/10/22/Vuex-getter/">Vuex(getter)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/hexoBlog/2019/10/22/Vuex-getter/" class="article-date">
+	  <time datetime="2019-10-22T07:56:22.000Z" itemprop="datePublished">十月 22, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候我们需要从store中的state中派生出一些状态，例如对列表进行过滤并计数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    return this.$store.state.todos.filter(todo =&gt; todo.done).length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果有多个组件需要用到此属性，我们要么复制这个函数，要么抽取到一个共享函数然后在多处导入它。无论哪种方式都不是很理想<br>Vuex允许我们在store中定义getter（可以认为是store的计算属性），就像计算属性一样，getter的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。<br>Getter接受state作为其第一个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; id: 1, text: &apos;...&apos;, done: true &#125;,</span><br><span class="line">      &#123; id: 2, text: &apos;...&apos;, done: false &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    doneTodos: state =&gt; &#123;</span><br><span class="line">      return state.todos.filter(todo =&gt; todo.done)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="通过属性访问"><a href="#通过属性访问" class="headerlink" title="通过属性访问"></a>通过属性访问</h1><p>Getter会暴露为store.getters对象，你可以以属性的形式访问到这些值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.getters.doneTodos // -&gt; [&#123; id: 1, text: &apos;...&apos;, done: true &#125;]</span><br></pre></td></tr></table></figure>
+
+<p>Getter也可以接受其他getter作为其第二个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">  // ...</span><br><span class="line">  doneTodosCount: (state, getters) =&gt; &#123;</span><br><span class="line">    return getters.doneTodos.length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.getters.doneTodosCount // -&gt; 1</span><br></pre></td></tr></table></figure>
+
+<p>我们可以很容易的在任何组件中使用它</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    return this.$store.getters.doneTodosCount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，getter在通过属性访问时是作为Vue的响应式系统的一部分缓存其中的。</p>
+<h1 id="通过方法访问"><a href="#通过方法访问" class="headerlink" title="通过方法访问"></a>通过方法访问</h1><p>你也可以通过让getter返回一个函数，来实现给getter传参。在你对store里的数组查询时非常有用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">  // ...</span><br><span class="line">  getTodoById: (state) =&gt; (id) =&gt; &#123;</span><br><span class="line">    return state.todos.find(todo =&gt; todo.id === id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.getters.getTodoById(2) // -&gt; &#123; id: 2, text: &apos;...&apos;, done: false &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，getter 在通过方法访问时，每次都会去进行调用，而不会缓存结果。</p>
+<h1 id="mapGetter辅助函数"><a href="#mapGetter辅助函数" class="headerlink" title="mapGetter辅助函数"></a>mapGetter辅助函数</h1><p>mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // ...</span><br><span class="line">  computed: &#123;</span><br><span class="line">  // 使用对象展开运算符将 getter 混入 computed 对象中</span><br><span class="line">    ...mapGetters([</span><br><span class="line">      &apos;doneTodosCount&apos;,</span><br><span class="line">      &apos;anotherGetter&apos;,</span><br><span class="line">      // ...</span><br><span class="line">    ])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想将一个 getter 属性另取一个名字，使用对象形式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mapGetters(&#123;</span><br><span class="line">  // 把 `this.doneCount` 映射为 `this.$store.getters.doneTodosCount`</span><br><span class="line">  doneCount: &apos;doneTodosCount&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/hexoBlog/categories/vue全家桶/">vue全家桶</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-Vuex-state"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -310,7 +387,7 @@ var themeMenus = {};
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/21/JS如何实现继承/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/5" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/21/JS如何实现继承/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             js继承有五种实现方式：1、对象冒充123456function Parent(username)&#123;    this.username = username;    this.hello = function()&#123;      alert(this.username);    &#125;  &#125;
@@ -375,7 +452,7 @@ var themeMenus = {};
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/20/用-async-await-来处理异步/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/20/用-async-await-来处理异步/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/1" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             async先说一下async的用法，它作为一个关键字放到函数前面，
@@ -441,7 +518,7 @@ var themeMenus = {};
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/6" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/20/JSONP-CORS和跨域/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/7" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             首先明确：JSONP与CORS的使用目的相同，并且都需要服务端和客户端同时支持，虽然功能上讲CORS更为强大，但是需要根据应用场景选择使用哪一个。
@@ -506,7 +583,7 @@ JSONP（json with padding 填充式json）利用了使用src引用静态资源�
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/19/promise/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/1" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/19/promise/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/6" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             promise是什么1、主要用于异步计算。2、可以将异步操作队列化，按照期望的顺序执行，返回符合预期的结果。3、可以再对象之间传递和操作promise，帮助我们处理队列
@@ -570,7 +647,7 @@ JSONP（json with padding 填充式json）利用了使用src引用静态资源�
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/18/ES6常用语法/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/18/ES6常用语法/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/1" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             字符串扩展常用的一些方法
@@ -638,7 +715,7 @@ includes(),startsWith(...
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/8" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/16/入门vuex（vue状态管理）/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/2" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。
@@ -702,7 +779,7 @@ includes(),startsWith(...
 
           
             <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/10/AJAX/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/7" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
+              <a href="/hexoBlog/2019/10/10/AJAX/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/10" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
             </div>
             <div class="entry-summary">
             AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
@@ -717,86 +794,6 @@ AJAX应用：
         
           <p class="article-more-link">
             <a href="/hexoBlog/2019/10/10/AJAX/#more">阅读全文</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-封装一个函数"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/hexoBlog/2019/10/08/封装一个函数/">封装一个函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/hexoBlog/2019/10/08/封装一个函数/" class="article-date">
-	  <time datetime="2019-10-08T14:29:43.000Z" itemprop="datePublished">十月 8, 2019</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-thumbnail">
-              <a href="/hexoBlog/2019/10/08/封装一个函数/"><img width="250" height="175" src="http://lorempixel.com/500/350/city/1" class="attachment-thumb-featured size-thumb-featured wp-post-image" alt=""></a>
-            </div>
-            <div class="entry-summary">
-            为了更方便的理解jQuery，我们来尝试自己封装一个函数使其拥有jQuery的功能，从而理解jQuery的原理。
-首先我们写一个简单的HTML
-
-
-
-
-
-
-
-
-接下来我们需要用到一个函数，来给HTML标签中的div元素添加一个class
-
-
-
-注意在使用forEach() API的时候 对象必须是一个数组或伪数组。因此在给这个函数传递参数的时候需要加上[].
-
-
-用来添加text Conte...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/hexoBlog/2019/10/08/封装一个函数/#more">阅读全文</a>
           </p>
         </div>
       
@@ -923,6 +920,18 @@ AJAX应用：
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/22/Vuex-getter/">Vuex(getter)</a></h6>
+              <span>十月 22, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/22/Vuex-state/">Vuex(state)</a></h6>
               <span>十月 22, 2019</span>
             </div>
@@ -977,18 +986,6 @@ AJAX应用：
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/hexoBlog/2019/10/19/promise/">promise</a></h6>
-              <span>十月 19, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -998,7 +995,7 @@ AJAX应用：
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/vue全家桶/">vue全家桶</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">10</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/vue全家桶/">vue全家桶</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/hexoBlog/categories/前端/">前端</a><span class="category-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -1008,7 +1005,7 @@ AJAX应用：
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/css/">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/javaScript/">javaScript</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/vuex/">vuex</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/hexoBlog/tags/这篇博客用来测试HEXO是否搭建并上传成功/">这篇博客用来测试HEXO是否搭建并上传成功</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1028,7 +1025,7 @@ AJAX应用：
     <h3 class="widget-title">归档</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/hexoBlog/archives/2019/10/">十月 2019</a><span class="archive-list-count">14</span></li></ul>
     </div>
   </div>
 
