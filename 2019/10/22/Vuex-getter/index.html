@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Kirbey&#39;s blog">
 <meta property="og:description" content="有时候我们需要从store中的state中派生出一些状态，例如对列表进行过滤并计数： 12345computed: &amp;#123;  doneTodosCount () &amp;#123;    return this.$store.state.todos.filter(todo =&amp;gt; todo.done).length  &amp;#125;&amp;#125;  如果有多个组件需要用到此属性，我们要么复制这个函">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-22T08:09:57.927Z">
+<meta property="og:updated_time" content="2019-10-22T09:28:33.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vuex(getter)">
 <meta name="twitter:description" content="有时候我们需要从store中的state中派生出一些状态，例如对列表进行过滤并计数： 12345computed: &amp;#123;  doneTodosCount () &amp;#123;    return this.$store.state.todos.filter(todo =&amp;gt; todo.done).length  &amp;#125;&amp;#125;  如果有多个组件需要用到此属性，我们要么复制这个函">
@@ -190,6 +190,7 @@ var themeMenus = {};
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    return this.$store.state.todos.filter(todo =&gt; todo.done).length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果有多个组件需要用到此属性，我们要么复制这个函数，要么抽取到一个共享函数然后在多处导入它。无论哪种方式都不是很理想<br>Vuex允许我们在store中定义getter（可以认为是store的计算属性），就像计算属性一样，getter的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。<br>Getter接受state作为其第一个参数：</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; id: 1, text: &apos;...&apos;, done: true &#125;,</span><br><span class="line">      &#123; id: 2, text: &apos;...&apos;, done: false &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    doneTodos: state =&gt; &#123;</span><br><span class="line">      return state.todos.filter(todo =&gt; todo.done)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <h1 id="通过属性访问"><a href="#通过属性访问" class="headerlink" title="通过属性访问"></a>通过属性访问</h1><p>Getter会暴露为store.getters对象，你可以以属性的形式访问到这些值：</p>
@@ -258,6 +259,15 @@ var themeMenus = {};
   
     
 <nav id="article-nav">
+  
+    <a href="/hexoBlog/2019/10/22/Vuex-mutation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Vuex(mutation)
+        
+      </div>
+    </a>
   
   
     <a href="/hexoBlog/2019/10/22/Vuex-state/" id="article-nav-older" class="article-nav-link-wrap">
