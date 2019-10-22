@@ -21,19 +21,19 @@
   
   
   
-  <meta name="description" content="#Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 #什么是“状态管理模式”？让我们从一个简单的 Vue 计数">
+  <meta name="description" content="Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 什么是“状态管理模式”？让我们从一个简单的 Vue 计数应用">
 <meta name="keywords" content="vuex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="入门vuex（vue状态管理）">
 <meta property="og:url" content="https://kirbey.github.io/hexoBlog/2019/10/16/入门vuex（vue状态管理）/index.html">
 <meta property="og:site_name" content="Kirbey&#39;s blog">
-<meta property="og:description" content="#Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 #什么是“状态管理模式”？让我们从一个简单的 Vue 计数">
+<meta property="og:description" content="Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 什么是“状态管理模式”？让我们从一个简单的 Vue 计数应用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://vuex.vuejs.org/flow.png">
-<meta property="og:updated_time" content="2019-10-18T08:03:42.349Z">
+<meta property="og:updated_time" content="2019-10-22T07:29:44.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="入门vuex（vue状态管理）">
-<meta name="twitter:description" content="#Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 #什么是“状态管理模式”？让我们从一个简单的 Vue 计数">
+<meta name="twitter:description" content="Vuex 是什么？Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。 什么是“状态管理模式”？让我们从一个简单的 Vue 计数应用">
 <meta name="twitter:image" content="https://vuex.vuejs.org/flow.png">
   
     <link rel="alternate" href="/atom.xml" title="Kirbey&#39;s blog" type="application/atom+xml">
@@ -188,25 +188,38 @@ var themeMenus = {};
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#Vuex 是什么？<br>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。</p>
-<p>#什么是“状态管理模式”？<br>让我们从一个简单的 Vue 计数应用开始：</p>
+        <h1 id="Vuex-是什么？"><a href="#Vuex-是什么？" class="headerlink" title="Vuex 是什么？"></a>Vuex 是什么？</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 devtools extension，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。</p>
+<h2 id="什么是“状态管理模式”？"><a href="#什么是“状态管理模式”？" class="headerlink" title="什么是“状态管理模式”？"></a>什么是“状态管理模式”？</h2><p>让我们从一个简单的 Vue 计数应用开始：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  // state</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // view</span><br><span class="line">  template: `</span><br><span class="line">    &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;</span><br><span class="line">  `,</span><br><span class="line">  // actions</span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment () &#123;</span><br><span class="line">      this.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 <p>这个状态自管理应用包含以下几个部分：</p>
 <p>*state，驱动应用的数据源；<br>*view，以声明方式将 state 映射到视图；<br>*actions，响应在 view 上的用户输入导致的状态变化。<br>以下是一个表示“单向数据流”理念的简单示意：</p>
 <img src="https://vuex.vuejs.org/flow.png" class="v" title="[width] [height] title text " alt="单向数据流">
-<p>但是，当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：<br>*多个视图依赖于同一状态。<br>*来自不同视图的行为需要变更同一状态。<br>对于问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。对于问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。以上的这些模式非常脆弱，通常会导致无法维护的代码。</p>
+<p>但是，当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：</p>
+<ul>
+<li>多个视图依赖于同一状态。</li>
+<li>来自不同视图的行为需要变更同一状态。<br>对于问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力。对于问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝。以上的这些模式非常脆弱，通常会导致无法维护的代码。</li>
+</ul>
 <p>因此，我们为什么不把组件的共享状态抽取出来，以一个全局单例模式管理呢？在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置，任何组件都能获取状态或者触发行为！</p>
 <p>通过定义和隔离状态管理中的各种概念并通过强制规则维持视图和状态间的独立性，我们的代码将会变得更结构化且易维护。</p>
 <p>这就是 Vuex 背后的基本思想，借鉴了 Flux、Redux 和 The Elm Architecture。与其他模式不同的是，Vuex 是专门为 Vue.js 设计的状态管理库，以利用 Vue.js 的细粒度数据响应机制来进行高效的状态更新。</p>
+<h2 id="什么情况下我应该是用vuex"><a href="#什么情况下我应该是用vuex" class="headerlink" title="什么情况下我应该是用vuex"></a>什么情况下我应该是用vuex</h2><p>vuex可以帮助我们管理共享状态，并附带了更多的概念和框架，。这需要对短期和长期效益进行权衡。<br>如果您不打算开发大型单页应用，使用vuex可能是繁琐冗余的，但是如果需要构建一个中大型应用，你可能会考虑如何更好的在组件外部管理状态，vuex将会成为自然而然的选择。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>每一个vuex应用的核心就是store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的状态（state）。Vuex和单纯的全局对象有以下两点不同：<br>1、Vuex的状态储存是响应式的。当vue组件从store中读取状态的时候，若store中的状态发生改变，那么相应的组件也会相应的得到高效更新。<br>2、你不能直接改变store中的状态。改变store中状态的唯一途径就是显示式的提交（commit）mutation。这样可以使我们方便的跟踪每一个状态的变化，从而让我们可以实现一些工具帮助我们更好地了解我们的应用。</p>
+<h2 id="简单的store"><a href="#简单的store" class="headerlink" title="简单的store"></a>简单的store</h2><p>安装Vuex后，让我们来创建一个store。创建过程直截了当————仅需要提供一个初始state对象和一些mutation：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>现在你可以通过store.state来获取状态对象，以及通过store.commit方法触发状态变更。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store.commit(&apos;increment&apos;)</span><br><span class="line"></span><br><span class="line">console.log(store.state.count) // -&gt; 1</span><br></pre></td></tr></table></figure>
+
+<p>再次强调，我们通过提交mutation的方式，而非直接改变store.state.count，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明确，这样你在阅读代码的时候能够更加容易的解读应用内部的状态变化。此外，这样也能让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以体验如时空穿梭般的调试体验。<br>由于store中的状态是响应式的，在组件中调用store的状态简单到仅需要在计算属性中返回即可。触发变化也仅仅是在组件的methods中提交mutation。</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/hexoBlog/categories/前端/">前端</a>
+    <a class="article-category-link" href="/hexoBlog/categories/vue全家桶/">vue全家桶</a>
 
       
   <span class="ico-tags"></span>
@@ -271,7 +284,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">文章目录</strong>
     
-      <ol class="nav">无</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex-是什么？"><span class="nav-number">1.</span> <span class="nav-text">Vuex 是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是“状态管理模式”？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是“状态管理模式”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况下我应该是用vuex"><span class="nav-number">1.2.</span> <span class="nav-text">什么情况下我应该是用vuex</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的store"><span class="nav-number">2.1.</span> <span class="nav-text">简单的store</span></a></li></ol></li></ol>
     
     </div>
   </aside>
